@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Question 3 - Nombre Total de Films";
+}
+
+<div class="container mt-4">
+    <h2>Nombre Total de Films dans le Magasin</h2>
+    <hr />
+
+    <div class="card text-center shadow-sm" style="max-width: 500px; margin: 0 auto;">
+        <div class="card-body">
+            <h5 class="card-title text-muted">Total des Films</h5>
+            <h1 class="display-1 text-primary fw-bold">@ViewBag.TotalMovies</h1>
+            <p class="card-text text-muted">films disponibles dans la base de données</p>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Retour à l'accueil</a>
+        
+    </div>
+</div>
