@@ -1,0 +1,33 @@
+﻿@model IEnumerable<tp2.Models.Movie>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>all the genres</title>
+</head>
+<body>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom du film</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach(var f in Model)
+        {
+            <tr>
+                <td>@f.Id</td>
+                <td>@f.Name</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<tp2.Models.Genre>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>all the genres</title>
+</head>
+<body>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom du genre</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach(var g in Model)
+        {
+            <tr>
+                <td>@g.Id</td>
+                <td>@g.Name</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
