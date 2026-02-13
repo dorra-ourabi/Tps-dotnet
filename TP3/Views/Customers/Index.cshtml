@@ -1,0 +1,36 @@
+﻿@using TP3.Models
+@model IEnumerable<dynamic>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div >
+    <h1 class="display-4">Index</h1>
+    <a asp-controller="Customers" asp-action="Add" >Create New</a>
+</div>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Client</th>
+        <th>DiscountRate(%)</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.DiscountRate</td>
+            <td>
+                <a href="">Delete</a>
+                <span>|</span>
+                <a asp-controller="Customers" asp-route-id="@item.Id" asp-action="Details">Details</a>
+                <span>|</span>
+                <a href="add">Edit</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
