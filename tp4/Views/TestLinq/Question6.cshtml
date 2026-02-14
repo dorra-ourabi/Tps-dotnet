@@ -1,0 +1,54 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    ViewData["Title"] = "Question 6 - Top 3 Genres Populaires";
+}
+
+<div class="container mt-4">
+    <h2>Les 3 Genres les Plus Populaires</h2>
+    <p class="text-muted">Classés par nombre de films</p>
+    <hr />
+
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            int rank = 1;
+            foreach (var genre in Model)
+            {
+                string badgeColor = rank == 1 ? "bg-warning" : rank == 2 ? "bg-secondary" : "bg-danger";
+                
+                <div class="col-md-4">
+                    <div class="card text-center shadow-sm mb-3">
+                        <div class="card-header @badgeColor text-white">
+                            <h5> Position @rank</h5>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">@genre.GenreName</h3>
+                            <p class="card-text">
+                                <span class="display-4 text-primary fw-bold">@genre.MovieCount</span>
+                                <br>
+                                <small class="text-muted">film(s)</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                rank++;
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <div class="alert alert-warning" role="alert">
+                    Aucun genre trouvé
+                </div>
+            </div>
+        }
+    </div>
+
+
+    <div class="mt-3">
+        <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Retour à l'accueil</a>
+  
+    </div>
+</div>

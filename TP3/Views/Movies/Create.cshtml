@@ -1,0 +1,49 @@
+﻿@model TP3.ViewModels.MoviesVM
+
+<div class="container mt-4">
+    @* Lien discret en haut comme sur l'image *@
+    <a asp-action="Index" class="text-primary" style="text-decoration: underline;">Back to List</a>
+    
+    @* L'enctype est obligatoire pour que le paramètre IFormFile photo ne soit pas nul *@
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        
+        <table class="table table-bordered mt-2">
+            <tr>
+                <td class="bg-light" style="width: 25%; vertical-align: middle;">
+                    <strong>Name</strong>
+                </td>
+                <td>
+                    <input asp-for="movie.Name" class="form-control" placeholder="Enter Movie name" />
+                </td>
+            </tr>
+            <tr>
+                <td class="bg-light" style="vertical-align: middle;">
+                    <strong>Movie Added :</strong>
+                </td>
+                <td>
+                    @* Le placeholder sur l'image suggère un format date/heure *@
+                    <input asp-for="movie.DateAjoutMovie" class="form-control" type="datetime-local" placeholder="19/10/2023 12:30" />
+                </td>
+            </tr>
+            <tr>
+                <td class="bg-light" style="vertical-align: middle;">
+                    <strong>photo</strong>
+                </td>
+                <td>
+                    @* Ici le nom 'name="photo"' doit correspondre au paramètre du contrôleur *@
+                    <input name="photo" type="file" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="p-0">
+                    <button type="submit" class="btn btn-primary m-2" style="width: 150px;">Save Info</button>
+                </td>
+            </tr>
+            <tr class="bg-light">
+                <td colspan="2" class="p-0">
+                    <a asp-action="Index" class="btn btn-success m-2" style="width: 150px;">Back To List</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

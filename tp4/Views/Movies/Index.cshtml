@@ -1,0 +1,76 @@
+﻿@model IEnumerable<tp4.Models.Movies>
+
+@{
+    ViewData["Title"] = "Liste des Films";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Liste des Films</h2>
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Ajouter un Film
+        </a>
+    </div>
+    <hr />
+
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nom du Film</th>
+                <th>Genre</th>
+                <th>Stock</th>
+                <th>Date d'Ajout</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var movie in Model)
+                {
+                    <tr>
+                        <td>@movie.Id</td>
+                        <td><strong>@movie.Name</strong></td>
+                        <td>
+                            @if (movie.Genre != null)
+                            {
+                                <span class="badge bg-primary">@movie.Genre.GenreName</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted">N/A</span>
+                            }
+                        </td>
+                        <td>
+                            @if (movie.Stock > 0)
+                            {
+                                <span class="badge bg-success">@movie.Stock</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Rupture de stock</span>
+                            }
+                        </td>
+                        <td>@movie.DateAjoutMovie?.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@movie.Id" class="btn btn-sm btn-info">Détails</a>
+                            <a asp-action="Edit" asp-route-id="@movie.Id" class="btn btn-sm btn-warning">Modifier</a>
+                            <a asp-action="Delete" asp-route-id="@movie.Id" class="btn btn-sm btn-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center text-muted">Aucun film disponible</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="mt-3">
+        <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Retour à l'accueil</a>
+    </div>
+</div>
