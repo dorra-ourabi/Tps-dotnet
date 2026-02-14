@@ -1,0 +1,42 @@
+﻿@model IEnumerable<tp4.Models.Movies>
+
+@{
+    ViewData["Title"] = "Question 1 - Films Action en Stock";
+}
+
+<h2>Films du genre "Action" disponibles dans le stock</h2>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nom du Film</th>
+        <th>Genre</th>
+        <th>Stock</th>
+        <th>Date d'ajout</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (Model != null && Model.Any())
+    {
+        foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Id</td>
+                <td>@movie.Name</td>
+                <td>@movie.Genre.GenreName</td>
+                <td>@movie.Stock</td>
+                <td>@movie.DateAjoutMovie?.ToString("dd/MM/yyyy")</td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="5" class="text-center">Aucun film Action en stock</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Retour</a>

@@ -1,0 +1,79 @@
+﻿@model tp4.Models.Movies
+
+@{
+    ViewData["Title"] = "Détails du Film";
+}
+
+<div class="container mt-4">
+    <h2>Détails du Film</h2>
+    <hr />
+
+    @if (Model != null)
+    {
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h4>@Model.Name</h4>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">ID</dt>
+                    <dd class="col-sm-9">@Model.Id</dd>
+
+                    <dt class="col-sm-3">Nom du Film</dt>
+                    <dd class="col-sm-9">@Model.Name</dd>
+
+                    <dt class="col-sm-3">Genre</dt>
+                    <dd class="col-sm-9">
+                        @if (Model.Genre != null)
+                        {
+                            <span class="badge bg-primary">@Model.Genre.GenreName</span>
+                        }
+                        else
+                        {
+                            <span class="text-muted">Non défini</span>
+                        }
+                    </dd>
+
+                    <dt class="col-sm-3">Stock</dt>
+                    <dd class="col-sm-9">
+                        @if (Model.Stock > 0)
+                        {
+                            <span class="badge bg-success">@Model.Stock disponible(s)</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Rupture de stock</span>
+                        }
+                    </dd>
+
+                    <dt class="col-sm-3">Date d'Ajout</dt>
+                    <dd class="col-sm-9">@Model.DateAjoutMovie?.ToString("dd/MM/yyyy")</dd>
+
+                    <dt class="col-sm-3">Image</dt>
+                    <dd class="col-sm-9">
+                        @if (!string.IsNullOrEmpty(Model.ImageFile))
+                        {
+                            <span>@Model.ImageFile</span>
+                        }
+                        else
+                        {
+                            <span class="text-muted">Aucune image</span>
+                        }
+                    </dd>
+                </dl>
+            </div>
+            <div class="card-footer">
+                <a asp-action="Index" class="btn btn-secondary">Retour à la liste</a>
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Modifier</a>
+                <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Supprimer</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning" role="alert">
+            Film introuvable.
+        </div>
+        <a asp-action="Index" class="btn btn-secondary">Retour à la liste</a>
+    }
+</div>
