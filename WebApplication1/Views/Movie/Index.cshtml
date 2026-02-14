@@ -1,0 +1,64 @@
+﻿@model WebApplication1.Models.ViewModel.CustomerMoviesVM
+
+@{
+    Layout = null; // ou ton Layout.cshtml si tu en as un
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Liste des films du client</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 60%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #444;
+            padding: 10px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+<h2>Client: @Model.customer.Name</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nom du film</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach(var movie in Model.movies)
+    {
+        <tr>
+            <td>@movie.Id</td>
+            <td>@movie.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>
+</body>
+</html>
